@@ -1,11 +1,10 @@
-var https = require('https');
-var express = require('express')
-var bodyParser = require('body-parser');
+const https = require('https');
+const express = require('express')
+const bodyParser = require('body-parser');
+const reply = require('./reply');
 
-var reply = require('./reply')
-
-var app = express();
-var router = express.Router();
+const app = express();
+const router = express.Router();
 
 function validation() {
   router.get('/webhook', (req, res) => {
@@ -35,9 +34,9 @@ function pageMsgListener() {
         // Iterate over each messaging event
         entry.messaging.forEach((event) => {
           if (event.message) {
-            receivedMessage(event);
+            reply.handleEvent(event);
           } else {
-            // console.log("Webhook received unknown event: ", event);
+            console.log("Webhook received unknown event: ", event);
           }
         });
       });
@@ -50,33 +49,6 @@ function pageMsgListener() {
       res.sendStatus(200);
     }
   });
-}
-
-function receivedMessage(event) {
-  let senderID = event.sender.id;
-  let recipientID = event.recipient.id;
-  let timeOfMessage = event.timestamp;
-
-  let message = event.message;
-  let messageId = message.mid;
-
-  // console.log(JSON.stringify(message));
-
-  for (let key in message.nlp) {
-    console.log(message.nlp[key]);
-  }
-
-  let messageText = message.text;
-  let messageAttachments = message.attachments;
-
-  console.log("Received msg from %d at %d with message: %s",
-    senderID, timeOfMessage, messageText);
-
-  // TODO: process text
-  // process(messageText)
-
-  // TODO: proper response,
-  reply.sendTextMessage(senderID, messageText);
 }
 
 function startWebhook() {
@@ -93,7 +65,7 @@ function startWebhook() {
       console.log((new Date()) + ' HTTP server is listening on port 3000');
   });
 
-  var ssl = require('./ssl')
+  var ssl = require('./ssl/ssl')
   httpsServer = https.createServer(ssl, app);
   httpsServer.listen(3001, () => {
       console.log((new Date()) + ' HTTPS server is listening on port 3001');

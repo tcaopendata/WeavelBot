@@ -1,4 +1,4 @@
-var webhook = require('./webhook');
+const webhook = require('./webhook');
 
 webhook.startWebhook();
 
