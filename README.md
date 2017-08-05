@@ -25,8 +25,13 @@ We make a chatbot to help you travel through the Asia.
 2.wit.ai   
 3.MySQL   
 4.ehownet(ckip)   
-5.machine learning   
+5.ML(machine learning)   
 6.NLP(Natural Language Processing)   
+
+# Features
+The route we planned for you is not only based on the weather, but also combined with the comment online.   
+We collect comment data from the website(https://www.tripadvisor.com.tw/Attractions). According to the score named "Valence score",judging how positive the mood is, and "Arousal score",judging how excited person is, we can know whether people like the place or not.
+
 
 # Team members/authors 
 Chiu, Ying Jhen  
@@ -35,4 +40,10 @@ topjohnwu
 Liangtaiwan   
 We are students majoring in " Electronical Engineering National Taiwan University "  
 
+# Other to say
+If you have any problem with our project, please tell us! Very happy to know that!   
+We'll fix any problem you find as soon as possible.   
+Thank you!   
+
 `chatbot` `travel` `weather`   
+
