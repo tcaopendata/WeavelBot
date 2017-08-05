@@ -2,6 +2,8 @@ var https = require('https');
 var express = require('express')
 var bodyParser = require('body-parser');
 
+var reply = require('./reply')
+
 var app = express();
 var router = express.Router();
 
@@ -35,7 +37,7 @@ function pageMsgListener() {
           if (event.message) {
             receivedMessage(event);
           } else {
-            console.log("Webhook received unknown event: ", event);
+            // console.log("Webhook received unknown event: ", event);
           }
         });
       });
@@ -51,13 +53,18 @@ function pageMsgListener() {
 }
 
 function receivedMessage(event) {
-  // console.log("Message data: ", event);
   let senderID = event.sender.id;
   let recipientID = event.recipient.id;
   let timeOfMessage = event.timestamp;
-  let message = event.message;
 
+  let message = event.message;
   let messageId = message.mid;
+
+  // console.log(JSON.stringify(message));
+
+  for (let key in message.nlp) {
+    console.log(message.nlp[key]);
+  }
 
   let messageText = message.text;
   let messageAttachments = message.attachments;
@@ -68,8 +75,8 @@ function receivedMessage(event) {
   // TODO: process text
   // process(messageText)
 
-  // TODO: response
-  // Response
+  // TODO: proper response,
+  reply.sendTextMessage(senderID, messageText);
 }
 
 function startWebhook() {
