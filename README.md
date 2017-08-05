@@ -38,10 +38,10 @@ Based on the data we have cleared and calculated, we can get some place which yo
 We can give you good plans in any kind of weather condition.   
 
 # Team members/authors 
-Chiu, Ying Jhen  
-Tang, Alex  
-topjohnwu  
-Liangtaiwan   
+  Chiu, Ying Jhen  
+  Tang, Alex  
+  topjohnwu  
+  Liangtaiwan   
 We are students majoring in " Electronical Engineering National Taiwan University "  
 
 # Other to say
