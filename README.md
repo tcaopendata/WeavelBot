@@ -20,7 +20,10 @@ We make a chatbot to help you travel through the Asia.
 
 
 # Team members
+Chiu, Ying Jhen
+Tang, Alex
+topjohnwu
+Liangtaiwan
 
 
-
-ˋchatbotˋ ˋweatherˋ ˋtravelˋ 
+`chatbot` `travel` `weather`   
