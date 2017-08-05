@@ -2,26 +2,29 @@
 A chatbot helping you travel through Asia.
 
 # Data used
-## Weather data
+## Weather
 1.Taiwan : www.data.gov.tw    
-(1)36 hours weather prediction   
-(2)long weather forecast for a month    
-(3)各地有人觀測站預報   
+(1) 36 hours weather prediction   
+(2) long weather forecast for a month    
+(3) 各地有人觀測站預報   
 
 2.Japan : www.data.jma.go.jp/developer/index.html   
-気象庁気象観測データ  (1) 降水の状況  (2) 気温の状況  
+気象庁気象観測データ  
+(1) 降水の状況  
+(2) 気温の状況  
 
-3.Thailand :  
+3.Thailand :  
+(1) Weather forecast
 
-4.Korea :  
+4.Korea :  
 
-## Travel data
+## Traveling
 1.tripadvisor  https://www.tripadvisor.com.tw/Attractions
 
 # Our WeavelBot link
 1.WeavelBot : 
 
-# Technique
+# Techniques
 1.Facebook messenger api   
 2.wit.ai   
 3.MySQL   
@@ -31,22 +34,20 @@ A chatbot helping you travel through Asia.
 7.Google map api   
 
 # Features
-The route we planned for you is not only based on the weather, but also combined with the comment online.   
-We collect comment data from the website(https://www.tripadvisor.com.tw/Attractions). According to the score named "Valence score", judging how positive the mood is, and "Arousal score", judging how excited person is, we can know whether people like the place or not.   
-Gernally, people think that when rainy outside, we are lazy and lie in the sofa. But!!! There's some place good for rainy to go.   
-Based on the data we have cleared and calculated, we can get some place which you go in the rainy day is also good and pretty.   
-We can give you good plans in any kind of weather condition.   
+Your trip is arranged based on the weather forecast and the comments online.   
+We collect comments from TripAdvisor (https://www.tripadvisor.com.tw/Attractions), quantize the emotion expressed my calculating the valance score and the arousal score, which is the rate of positivity and excitement respectively, and finally figure out whether people like the spot or not.
+Moreover, people usually stay indoor on rainy days. But!!! Still there are some places worthy to be visited. Based on the data we accumulated, we can recommend places that are nice and pretty, suitable for you to go even when it rains, providing you wonderful traveling plans under any kind of weather condition.   
 
 # Team members/authors 
   Chiu, Ying Jhen  
   Tang, Alex  
   topjohnwu  
   Liangtaiwan   
-We are students majoring in " Electronical Engineering National Taiwan University "  
+We are students from National Taiwan University, all majoring in Electrical Engineering. 
 
 # Other to say
-If you have any problem with our project, please tell us! Very happy to know that!   
-We'll fix any problem you find as soon as possible.   
+If you find any problem or bugs, please do not hesitate to contact us!
+We'll fix them as soon as we can.   
 Thank you!   
 
 `chatbot` `travel` `weather`   
