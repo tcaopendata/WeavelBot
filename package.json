@@ -1,0 +1,27 @@
+{
+  "name": "weavelbot",
+  "version": "1.0.0",
+  "description": "Weather Travel Chatbot",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeavelBot/WeavelBot.git"
+  },
+  "keywords": [
+    "weavelbot"
+  ],
+  "author": "WeavelBot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WeavelBot/WeavelBot/issues"
+  },
+  "homepage": "https://github.com/WeavelBot/WeavelBot#readme"
+}
