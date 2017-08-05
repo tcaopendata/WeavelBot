@@ -1,5 +1,5 @@
 # WeavelBot
-We make a chatbot to help you travel through the Asia.
+A chatbot helping you travel through Asia.
 
 # Data using in the project
 ## Weather data
