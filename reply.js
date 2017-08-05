@@ -1,15 +1,11 @@
 const { MessengerClient } = require('messaging-api-messenger')
 const client = MessengerClient.connect(require('./token').page_access_token)
 
-// var STATE = {
-//   GREETINGS: 0,
-//   LOCATION: 1,
-//   DURATION: 2,
-//   TRIP: 3,
-//   THANKS: 4
-// }
-
-// var state = 0;
+// Storing for context
+var context = {
+  location: '',
+  duration: 0
+};
 
 function handleEvent(event) {
   let senderID = event.sender.id;
@@ -22,8 +18,6 @@ function handleEvent(event) {
   let messageAttachments = message.attachments;
   let payload = message.payload;
 
-  console.log(message.nlp);
-
   console.log("Received msg from %d at %d with message: %s", senderID, time, messageText);
 
   let intents = [];
@@ -32,46 +26,60 @@ function handleEvent(event) {
     intents.push({
       catagory: key,
       datum: message.nlp.entities[key].sort((a, b) => b.confidence - a.confidence)[0] /* Sort within catagories */
-    })
+    });
   }
 
   // Sort across catagories
-  intents.sort((a, b) => b.datum.confidence - a.datum.confidence)
+  intents.sort((a, b) => b.datum.confidence - a.datum.confidence);
 
-  switch (intents[0].catagory) {
-    case 'greetings':
-      client.sendQuickReplies(senderID, { text: 'Hello, I\'m WeavelBOT!\nWhere do you want to go?' },
-        [
-          {
-            content_type: 'text',
-            title: 'Taipei',
-            payload: ''
-          },
-          {
-            content_type: 'text',
-            title: 'New Taipei',
-            payload: ''
-          },
-          {
-            content_type: 'text',
-            title: 'Tokyo',
-            payload: ''
-          },
-          {
-            content_type: 'text',
-            title: 'Bangkok',
-            payload: ''
-          },
-          {
-            content_type: 'text',
-            title: 'Seoul',
-            payload: ''
-          }
-        ]
-      ).catch(() => {console.log('Failure....')})
-      break;
-    case 'location':
-      break;
+  console.log(intents);
+  console.log(context);
+
+  if (intents.length > 0) {
+    switch (intents[0].catagory) {
+      case 'greetings':
+        client.sendQuickReplies(senderID, { text: 'Hello, I\'m WeavelBOT!\nWhere do you want to go?' },
+          [
+            {
+              content_type: 'text',
+              title: 'Taipei',
+              payload: ''
+            },
+            {
+              content_type: 'text',
+              title: 'New Taipei',
+              payload: ''
+            },
+            {
+              content_type: 'text',
+              title: 'Tokyo',
+              payload: ''
+            },
+            {
+              content_type: 'text',
+              title: 'Bangkok',
+              payload: ''
+            },
+            {
+              content_type: 'text',
+              title: 'Seoul',
+              payload: ''
+            }
+          ]
+        ).catch(() => {console.log('Failure....')});
+        break;
+      case 'location':
+        context.location = intents[0].datum.value;
+        client.sendText(senderID, 'How many days do you plan for your trip?');
+        break;
+      case 'duration':
+      case 'number':
+        context.duration = parseInt(intents[0].datum.value);
+        /* TODO: Query server for a list of recommendations
+         * Expect an array of details
+         */
+        break;
+    }
   }
 }
 
