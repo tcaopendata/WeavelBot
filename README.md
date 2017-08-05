@@ -8,7 +8,8 @@ We make a chatbot to help you travel through the Asia.
 (2)long weather forecast for a month    
 (3)各地有人觀測站預報   
 
-2.Japan : www.data.jma.go.jp/developer/index.html 気象庁気象観測データ  (1) 降水の状況  (2) 気温の状況  
+2.Japan : www.data.jma.go.jp/developer/index.html   
+気象庁気象観測データ  (1) 降水の状況  (2) 気温の状況  
 
 3.Thailand :  
 
@@ -24,13 +25,15 @@ We make a chatbot to help you travel through the Asia.
 1.Facebook messenger api   
 2.wit.ai   
 3.MySQL   
-4.ehownet(ckip)   
-5.ML(machine learning)   
-6.NLP(Natural Language Processing)   
+4.ehownet (ckip)   
+5.ML (machine learning)   
+6.NLP (Natural Language Processing)   
 
 # Features
 The route we planned for you is not only based on the weather, but also combined with the comment online.   
-We collect comment data from the website(https://www.tripadvisor.com.tw/Attractions). According to the score named "Valence score",judging how positive the mood is, and "Arousal score",judging how excited person is, we can know whether people like the place or not.
+We collect comment data from the website(https://www.tripadvisor.com.tw/Attractions). According to the score named "Valence score", judging how positive the mood is, and "Arousal score", judging how excited person is, we can know whether people like the place or not.   
+Gernally, people think that when rainy outside, we are lazy and lie in the sofa. But!!! There's some place good for rainy to go.   
+Based on the data we have cleared and calculated, we can get some place which you go in the rainy day is also good and pretty.   
 
 
 # Team members/authors 
