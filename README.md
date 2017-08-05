@@ -1,7 +1,7 @@
 # WeavelBot
 A chatbot helping you travel through Asia.
 
-# Data using in the project
+# Data used
 ## Weather data
 1.Taiwan : www.data.gov.tw    
 (1)36 hours weather prediction   
