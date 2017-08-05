@@ -7,7 +7,8 @@ We make a chatbot to help you travel through the Asia.
   (2)long weather forecast for a month
   (3)各地有人觀測站預報
 
-2. Japan : 気象庁気象観測データ
+2. Japan : www.data.jma.go.jp/developer/index.html
+  気象庁気象観測データ
   (1) 降水の状況
   (2) 気温の状況
   
