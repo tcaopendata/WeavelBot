@@ -35,8 +35,8 @@ A chatbot helping you travel through Asia.
 
 # Features
 Your trip is arranged based on the weather forecast and the comments online.   
-We collect comments from TripAdvisor (https://www.tripadvisor.com.tw/Attractions), quantize the emotion expressed my calculating the valance score and the arousal score, which is the rate of positivity and excitement respectively, and finally figure out whether people like the spot or not.
-Moreover, people usually stay indoor on rainy days. But!!! Still there are some places worthy to be visited. Based on the data we accumulated, we can recommend places that are nice and pretty, suitable for you to go even when it rains, providing you wonderful traveling plans under any kind of weather condition.   
+We collect comments from TripAdvisor (https://www.tripadvisor.com.tw/Attractions), quantize the emotion expressed by calculating the valance score and the arousal score, which is the rate of positivity and excitement respectively, and finally figure out whether people like the spot or not.
+Moreover, people usually stay indoor on rainy days. But!!! Still there are places worthy to be visited. Based on the data we accumulated, we recommend places that are nice and pretty, suitable for you to go even when it rains, providing you wonderful traveling plans under any kind of weather condition.   
 
 # Team members/authors 
   Chiu, Ying Jhen  
@@ -46,7 +46,7 @@ Moreover, people usually stay indoor on rainy days. But!!! Still there are some 
 We are students from National Taiwan University, all majoring in Electrical Engineering. 
 
 # Other to say
-If you find any problem or bugs, please do not hesitate to contact us!
+Should you find any problem or bugs, please do not hesitate to contact us!
 We'll fix them as soon as we can.   
 Thank you!   
 
