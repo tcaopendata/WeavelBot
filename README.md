@@ -21,8 +21,11 @@ A chatbot helping you travel through Asia.
 ## Traveling
 1.tripadvisor  https://www.tripadvisor.com.tw/Attractions
 
+## Tools
+1.ehownet : http://ehownet.iis.sinica.edu.tw/ehownet.php
+
 # Our WeavelBot link
-1.WeavelBot : 
+1.WeavelBot : https://www.facebook.com/WeavelBot-1473881236038348/?ref=aymt_homepage_panel
 
 # Techniques
 1.Facebook messenger api   
