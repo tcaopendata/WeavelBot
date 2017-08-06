@@ -1,6 +1,7 @@
 const { MessengerClient } = require('messaging-api-messenger');
 const client = MessengerClient.connect(require('./secret').page_access_token);
 const database = require('./database');
+const request = require('request');
 
 // Storing for context
 var context = {
@@ -9,7 +10,6 @@ var context = {
   sites: [],
   chosen: []
 };
-
 
 var lastSite;
 
@@ -108,19 +108,26 @@ function showInteractive(id) {
   lastSite = context.sites[Math.floor(Math.random() * context.sites.length)];
   console.log(lastSite);
   client.sendText(id, `Do you want to go to ${lastSite.name}?`);
-  client.sendButtonTemplate(id,
-  `https://www.google.com.tw/maps/search/${encodeURIComponent(lastSite.name.trim())}`,[
-  {
-    type: 'postback',
-    title: 'Yes',
-    payload: 'yes'
-  },
-  {
-    type: 'postback',
-    title: 'No',
-    payload: 'no'
-  }
-  ]);
+  request({
+    url: 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyATRemicmItBl1PXmuw5jr4fLYFx-2ZNB8',
+    method: 'POST',
+    json: true,
+    body: { longUrl: `https://www.google.com.tw/maps/search/${encodeURIComponent(lastSite.name.trim())}` }
+  }, (err, res, body) => {
+    client.sendButtonTemplate(id,
+    body.id,[
+    {
+      type: 'postback',
+      title: 'Yes',
+      payload: 'yes'
+    },
+    {
+      type: 'postback',
+      title: 'No',
+      payload: 'no'
+    }
+    ]);
+  });
 }
 
 function showFinal(id) {
