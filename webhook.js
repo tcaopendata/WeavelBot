@@ -35,6 +35,8 @@ function pageMsgListener() {
         entry.messaging.forEach((event) => {
           if (event.message) {
             reply.handleEvent(event);
+          } else if (event.postback) {
+            reply.handlePostback(event);
           } else {
             console.log("Webhook received unknown event: ", event);
           }

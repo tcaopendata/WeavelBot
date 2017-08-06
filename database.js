@@ -17,15 +17,11 @@ function query(callback, table, collumn, whereClause = '') {
   dbConnection.query(`SELECT ${collumn} from ${table} ${whereClause}`, callback)
 }
 
-function getSites(num, location, condition, callback) {
+function getSites(location, condition, callback) {
   query(
     (err, res, field) => {
       if (err) throw err;
-      let sites = [];
-      for (let i = 0; i < num; ++i) {
-        sites.push(res[Math.floor(Math.random() * res.length)]);
-      }
-      callback(sites);
+      callback(res);
     },
     `${location}_${condition}_spot`, 'name');
 }

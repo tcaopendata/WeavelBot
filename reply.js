@@ -5,8 +5,13 @@ const database = require('./database');
 // Storing for context
 var context = {
   location: '',
-  duration: 0
+  duration: 0,
+  sites: [],
+  chosen: []
 };
+
+
+var lastSite;
 
 function handleEvent(event) {
   let senderID = event.sender.id;
@@ -17,7 +22,6 @@ function handleEvent(event) {
   let messageId = message.mid;
   let messageText = message.text;
   let messageAttachments = message.attachments;
-  let payload = message.payload;
 
   console.log("Received msg from %d at %d with message: %s", senderID, time, messageText);
 
@@ -34,7 +38,6 @@ function handleEvent(event) {
   intents.sort((a, b) => b.datum.confidence - a.datum.confidence);
 
   console.log(intents);
-  console.log(context);
 
   if (intents.length > 0) {
     switch (intents[0].catagory) {
@@ -71,27 +74,55 @@ function handleEvent(event) {
       case 'duration':
       case 'number':
         context.duration = parseInt(intents[0].datum.value);
-        let willRain = false;
-        if (context.location === 'taipei') {
-          database.query(
-            (err, res, field) => {
-              if (err) throw err;
-              if (parseInt(res[0].pop) > 50) willRain = true;
-            },
-            'taiwan_12hr_weather', 'pop', `WHERE city='臺北市'`);
-        } else { /* TODO */ }
-        database.getSites(context.duration * 2, context.location, 'normal',
+        // let willRain = false;
+        // if (context.location === 'taipei') {
+        //   database.query(
+        //     (err, res, field) => {
+        //       if (err) throw err;
+        //       if (parseInt(res[0].pop) > 50) willRain = true;
+        //     },
+        //     'taiwan_12hr_weather', 'pop', `WHERE city='臺北市'`);
+        // } else { /* TODO */ }
+        database.getSites(context.location, 'normal',
           (sites) => {
-            console.log(sites);
-            for (let idx in sites) {
-              client.sendText(senderID, sites[idx].name);
-            }
+            context.sites = sites;
+            context.chosen = [];
+            showInteractive(senderID);
           });
         break;
     }
   }
 }
 
+function handlePostback(event) {
+  let senderID = event.sender.id;
+  let postback = event.postback;
+  let payload = postback.payload;
+  if (payload === 'yes') context.chosen.push(lastSite);
+  showInteractive(senderID);
+}
+
+function showInteractive(id) {
+  if (context.chosen.length >= context.duration * 2)
+    return showFinal();
+  lastSite = context.sites[Math.floor(Math.random() * context.sites.length)];
+  console.log(lastSite);
+  client.sendButtonTemplate(id,
+  `https://www.google.com.tw/maps/search/${encodeURIComponent(lastSite.name.trim())}`,[
+  {
+    type: 'postback',
+    title: 'Yes',
+    payload: 'yes'
+  },
+  {
+    type: 'postback',
+    title: 'No',
+    payload: 'no'
+  }
+  ]);
+}
+
 module.exports = {
-  handleEvent: handleEvent
+  handleEvent: handleEvent,
+  handlePostback: handlePostback
 }
