@@ -16,7 +16,8 @@ A chatbot helping you travel through Asia.
 3.Thailand :  
 (1) Weather forecast
 
-4.Korea :  
+4.Korea :
+(1) https://openweathermap.org/api
 
 ## Traveling
 1.tripadvisor  https://www.tripadvisor.com.tw/Attractions
