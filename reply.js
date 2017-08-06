@@ -1,5 +1,6 @@
-const { MessengerClient } = require('messaging-api-messenger')
-const client = MessengerClient.connect(require('./token').page_access_token)
+const { MessengerClient } = require('messaging-api-messenger');
+const client = MessengerClient.connect(require('./secret').page_access_token);
+const database = require('./database');
 
 // Storing for context
 var context = {
@@ -47,37 +48,45 @@ function handleEvent(event) {
             },
             {
               content_type: 'text',
-              title: 'New Taipei',
+              title: 'Tokyo',
               payload: ''
             },
             {
               content_type: 'text',
-              title: 'Tokyo',
+              title: 'Kyoto',
               payload: ''
             },
             {
               content_type: 'text',
               title: 'Bangkok',
               payload: ''
-            },
-            {
-              content_type: 'text',
-              title: 'Seoul',
-              payload: ''
             }
           ]
         ).catch(() => {console.log('Failure....')});
         break;
       case 'location':
-        context.location = intents[0].datum.value;
+        context.location = intents[0].datum.value.toLowerCase();
         client.sendText(senderID, 'How many days do you plan for your trip?');
         break;
       case 'duration':
       case 'number':
         context.duration = parseInt(intents[0].datum.value);
-        /* TODO: Query server for a list of recommendations
-         * Expect an array of details
-         */
+        let willRain = false;
+        if (context.location === 'taipei') {
+          database.query(
+            (err, res, field) => {
+              if (err) throw err;
+              if (parseInt(res[0].pop) > 50) willRain = true;
+            },
+            'taiwan_12hr_weather', 'pop', `WHERE city='臺北市'`);
+        } else { /* TODO */ }
+        database.getSites(context.duration * 2, context.location, 'normal',
+          (sites) => {
+            console.log(sites);
+            for (let idx in sites) {
+              client.sendText(senderID, sites[idx].name);
+            }
+          });
         break;
     }
   }

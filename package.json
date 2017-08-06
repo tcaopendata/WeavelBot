@@ -6,7 +6,8 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "messaging-api-messenger": "^0.2.4"
+    "messaging-api-messenger": "^0.2.4",
+    "mysql": "^2.14.1"
   },
   "devDependencies": {},
   "scripts": {

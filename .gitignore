@@ -58,7 +58,7 @@ typings/
 .env
 
 # Secret tokens
-token.js
+secret.js
 
 # macOS crap
 .DS_Store
