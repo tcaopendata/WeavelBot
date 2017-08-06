@@ -14,7 +14,7 @@ A chatbot helping you travel through Asia.
 (2) 気温の状況  
 
 3.Thailand :  
-(1) Weather forecast
+(1) https://openweathermap.org/api
 
 4.Korea :
 (1) https://openweathermap.org/api
