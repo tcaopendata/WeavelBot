@@ -104,9 +104,10 @@ function handlePostback(event) {
 
 function showInteractive(id) {
   if (context.chosen.length >= context.duration * 2)
-    return showFinal();
+    return showFinal(id);
   lastSite = context.sites[Math.floor(Math.random() * context.sites.length)];
   console.log(lastSite);
+  client.sendText(id, `Do you want to go to ${lastSite.name}?`);
   client.sendButtonTemplate(id,
   `https://www.google.com.tw/maps/search/${encodeURIComponent(lastSite.name.trim())}`,[
   {
@@ -120,6 +121,14 @@ function showInteractive(id) {
     payload: 'no'
   }
   ]);
+}
+
+function showFinal(id) {
+  let str = '';
+  for (let idx in context.chosen) {
+    str += context.chosen[idx].name + ' ';
+  }
+  client.sendText(id, str);
 }
 
 module.exports = {
